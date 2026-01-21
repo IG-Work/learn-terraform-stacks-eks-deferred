@@ -16,7 +16,7 @@ resource "kubernetes_namespace_v1" "demo_ns" {
   }
 }
 
-resource "kubernetes_config_map" "aws_auth" {
+/*resource "kubernetes_config_map" "aws_auth" {
   metadata {
     name      = "aws-auth"
     namespace = "kube-system"
@@ -39,7 +39,7 @@ resource "kubernetes_config_map" "aws_auth" {
       }
     ])
   }
-}
+}*/
 
 
 /*resource "kubernetes_manifest" "demo_workspace" {
