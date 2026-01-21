@@ -16,6 +16,32 @@ resource "kubernetes_namespace_v1" "demo_ns" {
   }
 }
 
+resource "kubernetes_config_map" "aws_auth" {
+  metadata {
+    name      = "aws-auth"
+    namespace = "kube-system"
+  }
+
+  data = {
+    mapRoles = yamlencode([
+      {
+        rolearn  = aws_iam_role.cluster_admin_role.arn
+        username = "cluster-admin"
+        groups   = ["system:masters"]
+      }
+    ])
+
+    mapUsers = yamlencode([
+      {
+        userarn  = "arn:aws:iam::977138101482:user/yashi"
+        username = "yashi"
+        groups   = ["system:masters"]
+      }
+    ])
+  }
+}
+
+
 /*resource "kubernetes_manifest" "demo_workspace" {
   manifest = {
     apiVersion = "app.terraform.io/v1alpha2"
