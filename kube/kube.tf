@@ -31,6 +31,12 @@ resource "kubernetes_config_map" "aws_auth" {
       }
     ])
   }
+
+lifecycle {
+    ignore_changes = [
+      data,        # Prevent Terraform from trying to overwrite defaults
+    ]
+  }
 }
 
 
