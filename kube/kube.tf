@@ -16,21 +16,13 @@ resource "kubernetes_namespace_v1" "demo_ns" {
   }
 }
 
-/*resource "kubernetes_config_map" "aws_auth" {
+resource "kubernetes_config_map" "aws_auth" {
   metadata {
     name      = "aws-auth"
     namespace = "kube-system"
   }
 
   data = {
-    mapRoles = yamlencode([
-      {
-        rolearn  = "arn:aws:iam::977138101482:role/stacks-demo-8u1b"
-        username = "cluster-admin"
-        groups   = ["system:masters"]
-      }
-    ])
-
     mapUsers = yamlencode([
       {
         userarn  = "arn:aws:iam::977138101482:user/yashi"
@@ -39,7 +31,7 @@ resource "kubernetes_namespace_v1" "demo_ns" {
       }
     ])
   }
-}*/
+}
 
 
 /*resource "kubernetes_manifest" "demo_workspace" {
